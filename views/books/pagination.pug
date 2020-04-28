@@ -1,0 +1,16 @@
+- for(var i = 1; i <= bookPages.totalPages; i++) {
+    if (search)
+        if (i === bookPages.currentPage)
+            a.selected(href=`?search=${search}&page=${i}`)= i
+            | 
+        else
+            a.pagination(href=`?search=${search}&page=${i}`)= i
+            | 
+    else
+        if (i === bookPages.currentPage)
+            a.selected(href=`?page=${i}`)= i
+            | 
+        else
+            a.pagination(href=`?page=${i}`)= i
+            | 
+- }
