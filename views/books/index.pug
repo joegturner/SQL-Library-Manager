@@ -1,0 +1,37 @@
+extends ../layout
+
+block content
+    h1 Books
+    p
+        a.button(href='/books/new') Create New Book     
+    p
+        form(action="/books" method="get")
+            input(type="text" name="search" id="search" placeholder="type to search...")
+            input(type="submit" value="Search")
+            form(action="/books/reset" method="get")
+                input(type="submit" value="Clear")
+    if books.length > 0
+        if (search != "" && search != "undefined")
+            p= `Searched: "${search}"`
+        p= `Total books listed: ${bookPages.totalBooks}`
+        table
+            thead
+                tr
+                    th Title
+                    th Author
+                    th Genre
+                    th Year
+            tbody
+                - for(var i = bookPages.first; i <= bookPages.last; i++) {
+                    tr
+                        td
+                            a(href="/books/" + books[i].id)= books[i].title
+                        td= books[i].author
+                        td= books[i].genre
+                        td= books[i].year
+                - }
+        p
+            p= `Displaying ${bookPages.first+1} to ${bookPages.last+1} (out of ${bookPages.totalBooks} books)`
+            include pagination
+    else
+        h2 No Books Found
