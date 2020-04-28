@@ -1,0 +1,7 @@
+extends ../layout
+
+block content
+    h1.error= title
+    p= error.message
+    p= (`Error status code: ${error.status}`)
+    a.button(href="/books/") &larr; Return Home
