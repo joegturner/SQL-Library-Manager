@@ -1,0 +1,12 @@
+extends ../layout
+
+block content
+    h2= (`"${book.title}"`)
+    h3= (`Author: ${book.author}`)
+    h3= (`Genre: ${book.genre}`)
+    h3= (`Year: ${book.year}`)
+    a.button(href=listingPage) &larr; Back
+    |   
+    a.button(href="/books/" + book.id + "/edit") Edit Book
+    |   
+    a.button(href="/books/" + book.id + "/delete") Delete Book
