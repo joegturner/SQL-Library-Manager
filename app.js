@@ -31,7 +31,7 @@ app.use(function(req, res, next) {
   
   console.error(`An error occured: ${error.message}`);
   console.error(`Error status: ${error.status}`);
-  res.render("books/page-error", {error, title: "Page Not Found"})
+  res.render("books/page-not-found", {error, title: "Page Not Found"})
 });
 
 module.exports = app;
