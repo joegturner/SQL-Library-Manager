@@ -34,4 +34,10 @@ app.use(function(req, res, next) {
   res.render("books/page-not-found", {error, title: "Page Not Found"})
 });
 
+/* Uncomment below if using app.js in package.json start line */
+// // set up dev server, 3000 = port number
+// app.listen(3000, () => {
+//   console.log('The application is running on localhost:3000');
+// });
+
 module.exports = app;
