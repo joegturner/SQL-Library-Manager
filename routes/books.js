@@ -29,7 +29,12 @@ function getPages(length, queryPage) {
   const first = (currentPage - 1) * booksPerPage;
   const calcLast = currentPage * booksPerPage - 1;
   let last;
-  calcLast <= length ? last = calcLast : last = length - 1;
+  calcLast < length ? last = calcLast : last = length - 1;
+
+  console.log(`totalBooks: ${totalBooks}`);
+  console.log(`currentPage: ${currentPage}`);
+  console.log(`first: ${first}`);
+  console.log(`last: ${last}`);
 
   const bookPages = {
     booksPerPage,
@@ -54,6 +59,7 @@ router.get('/', asyncHandler(async (req, res) => {
   typeof req.query.search != "undefined" ? search = req.query.search : search = "";
   
   // read from database based on search parameters
+  // letters that error: c, j, g
   let books;
   if (!search) {
     books = await Book.findAll();
@@ -88,6 +94,10 @@ router.get('/', asyncHandler(async (req, res) => {
 
   // assemble book listing pagination values
   const bookPages = getPages(books.length, req.query.page);
+
+  // console.log(`totalBooks: ${bookPages.totalBooks}`);
+  // console.log(`first: ${bookPages.first}`);
+  // console.log(`last: ${bookPages.last}`);
 
   res.render("books/index", { 
     books, 
